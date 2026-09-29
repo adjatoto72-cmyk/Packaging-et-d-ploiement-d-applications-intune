@@ -39,6 +39,10 @@ Ce lab fait suite aux dépôts [packaging-des-applications](https://github.com/a
 
 Sur chaque VM : *Paramètres > Comptes > Accès à l'entreprise ou à l'école > Se connecter > **Joindre cet appareil à Microsoft Entra ID*** (et non « Ajouter un compte professionnel ou scolaire », qui ne fait qu'un enregistrement).
 
+
+<img width="300" height="100" alt="Capture d&#39;écran 2026-09-29 112646" src="https://github.com/user-attachments/assets/03a8d6d5-a9e1-46b6-b1a2-7913c07b737f" />
+<img width="300" height="100" alt="Capture d&#39;écran 2026-09-29 112656" src="https://github.com/user-attachments/assets/4a216cf1-d2a7-48fa-b33d-a42047c5c567" />
+
 Vérification :
 
 ```powershell
@@ -49,6 +53,7 @@ Résultat attendu : `AzureAdJoined : YES`, `DomainJoined : NO`.
 
 <!-- Capture : écran d'accès à l'entreprise ou à l'école -->
 <!-- Capture : résultat dsregcmd /status -->
+<img width="405" height="156" alt="Capture d&#39;écran 2026-09-23 193016" src="https://github.com/user-attachments/assets/015f3914-6c5f-4c75-a187-4241a381f03c" />
 
 ### 1.2 Enrôlement automatique Intune
 
@@ -66,6 +71,9 @@ dsregcmd /status | Select-String "MdmUrl"
 Un `MdmUrl` de type `https://enrollment.manage.microsoft.com/...` confirme l'enrôlement.
 
 **Résultat observé** : les deux VM se sont enrôlées avec succès. Preuve concrète : des applications déjà présentes dans Intune (7-Zip, KeePass, en `.intunewin`) se sont installées automatiquement dès la jonction de `client`.
+
+<img width="944" height="332" alt="Capture d&#39;écran 2026-09-29 114023" src="https://github.com/user-attachments/assets/59115134-ca50-4cf2-a6e0-dd63fb54c223" />
+
 
 <!-- Capture : écran étendue MDM dans Entra -->
 <!-- Capture : dsregcmd /status avec MdmUrl renseigné -->
@@ -110,9 +118,20 @@ Test-NetConnection 172.16.0.5 -Port 5985
 Enter-PSSession -ComputerName 172.16.0.5 -Credential client\azureuser
 ```
 
+
+
+<img width="459" height="158" alt="Capture d&#39;écran 2026-09-29 115234" src="https://github.com/user-attachments/assets/ba4d3759-efbe-4c05-81d7-d52f43ee6cac" />
+
+<img width="205" height="51" alt="Capture d&#39;écran 2026-09-29 115911" src="https://github.com/user-attachments/assets/cd74f524-7f9f-4979-92cd-3f448e6dff74" />
+
+
 > **Point de blocage rencontré** : première tentative en erreur `PSRemotingTransportException` (TrustedHosts manquant), résolu par 2.2. Deuxième erreur liée au pare-feu / profil réseau public, résolue par 2.1.
 
 <!-- Capture : session distante active [172.16.0.5]: PS ... -->
+
+
+<img width="536" height="371" alt="Capture d&#39;écran 2026-09-29 120644" src="https://github.com/user-attachments/assets/2bcd9590-8fba-4945-882b-295dae2cb596" />
+
 
 ### 2.5 Copie et installation silencieuse de 7-Zip
 
@@ -131,10 +150,15 @@ Invoke-Command -Session $s {
   $p.ExitCode
 }
 ```
+<img width="415" height="222" alt="Capture d&#39;écran 2026-09-29 121906" src="https://github.com/user-attachments/assets/a4b7837a-28ac-4b95-8eab-5c3878462546" />
+
 
 > **Point de blocage rencontré** : premier essai avec un nom de fichier erroné dans la commande (`7z2408-x64.msi` au lieu de `7z2603-x64.msi`), provoquant un code retour **1619** (« package MSI introuvable »), confirmé dans le log par l'erreur `2203 ... -2147287038`. Correction : utiliser le nom de fichier exact présent sur `client`.
 
 Résultat : `ExitCode : 0` → installation réussie.
+
+<img width="461" height="185" alt="Capture d&#39;écran 2026-09-29 121933" src="https://github.com/user-attachments/assets/a51b0325-92b4-4d4b-b7a8-2cd8603d1a8e" />
+
 
 <!-- Capture : ExitCode 0 -->
 
@@ -161,6 +185,9 @@ Résultat confirmé : `Path : C:\Program Files\7-Zip\` sur `172.16.0.5`.
 | `msiexec` : code retour **1619** | Nom de fichier incorrect dans la commande (version différente du fichier réellement présent) | Vérifier le nom exact avec `Get-Item` avant de lancer l'installation |
 
 ---
+
+<img width="576" height="279" alt="Capture d&#39;écran 2026-09-29 115656" src="https://github.com/user-attachments/assets/b1684e35-55c9-4ba3-b2bb-133905807f8d" />
+
 
 ---
 
@@ -192,6 +219,8 @@ cd C:\Lab
 Génère `7z2603-x64.intunewin` dans `C:\Lab\7zip-output`.
 
 <!-- Capture : fichier .intunewin généré -->
+<img width="515" height="152" alt="Capture d&#39;écran 2026-09-29 121906" src="https://github.com/user-attachments/assets/9213159a-a171-4ab1-b664-f3452f374cf4" />
+
 
 ### 3.4 Créer l'application dans Intune
 
@@ -207,6 +236,9 @@ Génère `7z2603-x64.intunewin` dans `C:\Lab\7zip-output`.
 
 <!-- Capture : création de l'application dans Intune -->
 <!-- Capture : règles de détection -->
+<img width="999" height="868" alt="Capture d&#39;écran 2026-09-29 122448" src="https://github.com/user-attachments/assets/b1414736-890a-4567-96eb-738126564e57" />
+<img width="904" height="797" alt="Capture d&#39;écran 2026-09-29 122354" src="https://github.com/user-attachments/assets/31e1aaa7-7016-4692-aa15-05c9b2246846" />
+
 
 ### 3.5 Vérification du déploiement
 
@@ -216,6 +248,9 @@ Génère `7z2603-x64.intunewin` dans `C:\Lab\7zip-output`.
 |---|---|---|
 | Client | 26.03.00.0 | Installed |
 | Packager | 26.03.00.0 | Installed |
+
+<img width="598" height="284" alt="Capture d&#39;écran 2026-09-29 123930" src="https://github.com/user-attachments/assets/08b5d637-b698-4e80-bfb0-efd2cc754d2b" />
+
 
 > **Point d'attention** : le rapport d'état peut afficher un délai d'affichage (« L'affichage des informations les plus récentes peut retarder la mise à jour de ce rapport »). Si rien n'apparaît immédiatement après le déploiement, attendre quelques minutes et actualiser plutôt que de conclure à un échec.
 
@@ -266,6 +301,11 @@ cd C:\Lab
 
 <!-- Capture : configuration de la règle de détection manuelle -->
 <!-- Capture : attribution en "Disponible" -->
+<img width="588" height="318" alt="Capture d&#39;écran 2026-09-29 203805" src="https://github.com/user-attachments/assets/f06bae85-e0f5-41e7-b3bd-3244d6ca7c7b" />
+
+<img width="600" height="385" alt="Capture d&#39;écran 2026-09-29 204813" src="https://github.com/user-attachments/assets/74d10ef7-af2a-45d0-8eb0-ba14cca4df5b" />
+
+
 
 ### 4.4 Installation depuis le Portail d'entreprise
 
