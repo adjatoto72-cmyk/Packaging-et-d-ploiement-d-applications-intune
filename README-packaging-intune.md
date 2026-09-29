@@ -40,8 +40,8 @@ Ce lab fait suite aux dépôts [packaging-des-applications](https://github.com/a
 Sur chaque VM : *Paramètres > Comptes > Accès à l'entreprise ou à l'école > Se connecter > **Joindre cet appareil à Microsoft Entra ID*** (et non « Ajouter un compte professionnel ou scolaire », qui ne fait qu'un enregistrement).
 
 
-<img width="300" height="100" alt="Capture d&#39;écran 2026-09-29 112646" src="https://github.com/user-attachments/assets/03a8d6d5-a9e1-46b6-b1a2-7913c07b737f" />
-<img width="300" height="100" alt="Capture d&#39;écran 2026-09-29 112656" src="https://github.com/user-attachments/assets/4a216cf1-d2a7-48fa-b33d-a42047c5c567" />
+<img width="300" height="300" alt="Capture d&#39;écran 2026-09-29 112646" src="https://github.com/user-attachments/assets/03a8d6d5-a9e1-46b6-b1a2-7913c07b737f" />
+<img width="300" height="300" alt="Capture d&#39;écran 2026-09-29 112656" src="https://github.com/user-attachments/assets/4a216cf1-d2a7-48fa-b33d-a42047c5c567" />
 
 Vérification :
 
@@ -53,7 +53,7 @@ Résultat attendu : `AzureAdJoined : YES`, `DomainJoined : NO`.
 
 <!-- Capture : écran d'accès à l'entreprise ou à l'école -->
 <!-- Capture : résultat dsregcmd /status -->
-<img width="405" height="156" alt="Capture d&#39;écran 2026-09-23 193016" src="https://github.com/user-attachments/assets/015f3914-6c5f-4c75-a187-4241a381f03c" />
+<img width="405" height="356" alt="Capture d&#39;écran 2026-09-23 193016" src="https://github.com/user-attachments/assets/015f3914-6c5f-4c75-a187-4241a381f03c" />
 
 ### 1.2 Enrôlement automatique Intune
 
@@ -120,9 +120,9 @@ Enter-PSSession -ComputerName 172.16.0.5 -Credential client\azureuser
 
 
 
-<img width="459" height="158" alt="Capture d&#39;écran 2026-09-29 115234" src="https://github.com/user-attachments/assets/ba4d3759-efbe-4c05-81d7-d52f43ee6cac" />
+<img width="459" height="258" alt="Capture d&#39;écran 2026-09-29 115234" src="https://github.com/user-attachments/assets/ba4d3759-efbe-4c05-81d7-d52f43ee6cac" />
 
-<img width="205" height="51" alt="Capture d&#39;écran 2026-09-29 115911" src="https://github.com/user-attachments/assets/cd74f524-7f9f-4979-92cd-3f448e6dff74" />
+<img width="205" height="151" alt="Capture d&#39;écran 2026-09-29 115911" src="https://github.com/user-attachments/assets/cd74f524-7f9f-4979-92cd-3f448e6dff74" />
 
 
 > **Point de blocage rencontré** : première tentative en erreur `PSRemotingTransportException` (TrustedHosts manquant), résolu par 2.2. Deuxième erreur liée au pare-feu / profil réseau public, résolue par 2.1.
