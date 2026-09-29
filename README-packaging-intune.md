@@ -302,9 +302,9 @@ cd C:\Lab
 
 <!-- Capture : configuration de la règle de détection manuelle -->
 <!-- Capture : attribution en "Disponible" -->
-<img width="888" height="518" alt="Capture d&#39;écran 2026-09-29 203805" src="https://github.com/user-attachments/assets/f06bae85-e0f5-41e7-b3bd-3244d6ca7c7b" />
+<img width="888" height="318" alt="Capture d&#39;écran 2026-09-29 203805" src="https://github.com/user-attachments/assets/f06bae85-e0f5-41e7-b3bd-3244d6ca7c7b" />
 
-<img width="800" height="485" alt="Capture d&#39;écran 2026-09-29 204813" src="https://github.com/user-attachments/assets/74d10ef7-af2a-45d0-8eb0-ba14cca4df5b" />
+<img width="800" height="385" alt="Capture d&#39;écran 2026-09-29 204813" src="https://github.com/user-attachments/assets/74d10ef7-af2a-45d0-8eb0-ba14cca4df5b" />
 
 
 
